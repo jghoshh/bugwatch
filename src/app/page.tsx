@@ -202,65 +202,16 @@ export default function HomePage() {
     <main className="page">
       <div className="container">
         <header className="page-header">
-          <h1>bugwatch</h1>
-          <p className="lede">Log a sighting, add a photo, and we count it automatically.</p>
+          <h1>where are the bed bugs</h1>
+          <p className="lede">log a sighting, add a photo, and we count it automatically.</p>
         </header>
 
         <div className="layout">
-          <section className="panel upload-panel">
-            <div className="section-head">
-              <h2>Report a bug</h2>
-              <span className="pill">required</span>
-            </div>
-
-            <form onSubmit={handleSubmit} className="upload-form">
-              <div className="form-row column-row">
-                <label className="field condensed">
-                  <span>Photo</span>
-                  <input
-                    className="file-input"
-                    type="file"
-                    accept="image/*"
-                    onChange={(event) => setFile(event.target.files?.[0] ?? null)}
-                  />
-                </label>
-                <label className="field condensed">
-                  <span>Location code</span>
-                  <input
-                    className="input"
-                    type="text"
-                    placeholder="SMN"
-                    value={locationTag}
-                    list="location-codes"
-                    onChange={(event) => setLocationTag(event.target.value.toUpperCase())}
-                  />
-                </label>
-                <button type="submit" className="button" disabled={verifying}>
-                  {verifying ? "Verifying..." : "Report sighting"}
-                </button>
-              </div>
-
-              {errors ? <p className="error">{errors}</p> : null}
-              {status ? <p className="success">{status}</p> : null}
-              <p className="helper-text">
-                Use a building code (e.g., SMN, HGN, WCA) so it shows up in the distribution below.
-              </p>
-              <datalist id="location-codes">
-                {locationCatalog.map((item) => (
-                  <option key={item.code} value={item.code}>{`${item.code} — ${item.name}`}</option>
-                ))}
-              </datalist>
-            </form>
-          </section>
-
           <section className="panel distribution-panel">
             <div className="section-head">
-              <h2>Be careful of these places</h2>
+              <h2>be careful of these places</h2>
               <span className="pill">{totalSightings} sightings</span>
             </div>
-            <p className="helper-text" style={{ marginTop: 0 }}>
-              Sorted by where we have the most reports right now.
-            </p>
 
             <div className="distribution-grid">
               {distribution.map((item) => (
@@ -281,6 +232,48 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
+          </section>
+
+          <section className="panel upload-panel">
+            <div className="section-head">
+              <h2>report a bug</h2>
+            </div>
+
+            <form onSubmit={handleSubmit} className="upload-form">
+              <div className="form-row column-row">
+                <label className="field condensed">
+                  <span>photo</span>
+                  <input
+                    className="file-input"
+                    type="file"
+                    accept="image/*"
+                    onChange={(event) => setFile(event.target.files?.[0] ?? null)}
+                  />
+                </label>
+                <label className="field condensed">
+                  <span>campus building</span>
+                  <input
+                    className="input"
+                    type="text"
+                    placeholder="SMN"
+                    value={locationTag}
+                    list="location-codes"
+                    onChange={(event) => setLocationTag(event.target.value.toUpperCase())}
+                  />
+                </label>
+                <button type="submit" className="button" disabled={verifying}>
+                  {verifying ? "verifying..." : "report sighting"}
+                </button>
+              </div>
+
+              {errors ? <p className="error">{errors}</p> : null}
+              {status ? <p className="success">{status}</p> : null}
+              <datalist id="location-codes">
+                {locationCatalog.map((item) => (
+                  <option key={item.code} value={item.code}>{`${item.code} — ${item.name}`}</option>
+                ))}
+              </datalist>
+            </form>
           </section>
         </div>
       </div>

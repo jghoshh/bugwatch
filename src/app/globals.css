@@ -35,8 +35,8 @@ main {
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(340px, 0.7fr) 1.5fr;
-  gap: 0.9rem;
+  grid-template-columns: 1.8fr minmax(220px, 0.6fr);
+  gap: 1rem;
   align-items: start;
 }
 
@@ -64,11 +64,12 @@ main {
   border-radius: 12px;
   padding: 0.9rem 1rem;
   margin-bottom: 1rem;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
 }
 
 .upload-panel {
   width: 100%;
-  max-width: 380px;
+  max-width: 260px;
 }
 
 .section-head {
