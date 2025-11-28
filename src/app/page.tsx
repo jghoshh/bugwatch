@@ -227,7 +227,7 @@ export default function HomePage() {
 
         <section className="panel distribution-panel">
           <div className="section-head">
-            <h2>beware of these places</h2>
+            <h2>you should probably be careful here</h2>
             <span className="pill">{totalSightings} sightings</span>
           </div>
 
