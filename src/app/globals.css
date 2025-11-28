@@ -131,8 +131,8 @@ main {
   background: var(--accent);
   color: #ffffff;
   border: 1px solid var(--accent);
-  padding: 0.9rem 1.4rem;
-  font-size: 1rem;
+  padding: 0.75rem 1.1rem;
+  font-size: 0.95rem;
   font-family: "Roboto Mono", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
   border-radius: 10px;
   font-weight: 700;
@@ -219,18 +219,25 @@ main {
 }
 
 .link-button {
-  background: transparent;
-  border: 1px solid var(--ink);
-  color: var(--ink);
-  padding: 0.45rem 0.85rem;
-  border-radius: 8px;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: #ffffff;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
   font-family: "Roboto Mono", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
   font-weight: 700;
+  font-size: 0.9rem;
   cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
 }
 
 .link-button:hover {
-  background: #e5e7eb;
+  background: #b00021;
 }
 
 .modal-backdrop {
