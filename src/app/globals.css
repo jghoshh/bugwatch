@@ -45,6 +45,7 @@ main {
   margin: 0;
   font-size: 2.2rem;
   font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .lede {
@@ -219,9 +220,9 @@ main {
 }
 
 .link-button {
-  background: var(--accent);
+  background: transparent;
   border: 1px solid var(--accent);
-  color: #ffffff;
+  color: var(--accent);
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
   font-family: "Roboto Mono", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
@@ -229,7 +230,7 @@ main {
   font-size: 0.9rem;
   cursor: pointer;
   text-decoration: none;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  box-shadow: none;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -237,7 +238,7 @@ main {
 }
 
 .link-button:hover {
-  background: #b00021;
+  background: rgba(143, 0, 27, 0.08);
 }
 
 .modal-backdrop {
