@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Bugwatch Campus Tracker",
+  title: "where are the bed bugs",
   description: "Crowd-sourced campus bug sightings with real-time location distribution."
 };
 

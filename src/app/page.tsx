@@ -114,6 +114,7 @@ export default function HomePage() {
   const [errors, setErrors] = useState<string | null>(null);
   const [status, setStatus] = useState<string | null>(null);
   const [verifying, setVerifying] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (seedCodes.length === 0) return;
@@ -203,79 +204,92 @@ export default function HomePage() {
       <div className="container">
         <header className="page-header">
           <h1>where are the bed bugs</h1>
-          <p className="lede">log a sighting, add a photo, and we count it automatically.</p>
+          <a
+            href="#report"
+            className="link-button"
+            onClick={(event) => {
+              event.preventDefault();
+              setShowModal(true);
+            }}
+          >
+            report a sighting
+          </a>
         </header>
 
-        <div className="layout">
-          <section className="panel distribution-panel">
-            <div className="section-head">
-              <h2>be careful of these places</h2>
-              <span className="pill">{totalSightings} sightings</span>
-            </div>
+        <section className="panel distribution-panel">
+          <div className="section-head">
+            <h2>be careful of these places</h2>
+            <span className="pill">{totalSightings} sightings</span>
+          </div>
 
-            <div className="distribution-grid">
-              {distribution.map((item) => (
-                <div className="distribution-card" key={item.location}>
-                  <div className="distribution-top">
-                    <div>
-                      <strong>@{item.location}</strong>
-                      <div className="muted-text">{locationMap[item.location] ?? "Unknown building"}</div>
-                    </div>
-                    <span>{item.count} {item.count === 1 ? "report" : "reports"}</span>
+          <div className="distribution-grid">
+            {distribution.map((item) => (
+              <div className="distribution-card" key={item.location}>
+                <div className="distribution-top">
+                  <div>
+                    <strong>@{item.location}</strong>
+                    <div className="muted-text">{locationMap[item.location] ?? "Unknown building"}</div>
                   </div>
-                  <div className="bar" aria-label={`${item.location} sightings`}>
-                    <div
-                      className="bar-fill"
-                      style={{ width: `${Math.max(8, Math.round((item.count / topCount) * 100))}%` }}
-                    />
-                  </div>
+                  <span>{item.count} {item.count === 1 ? "report" : "reports"}</span>
                 </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="panel upload-panel">
-            <div className="section-head">
-              <h2>report a bug</h2>
-            </div>
-
-            <form onSubmit={handleSubmit} className="upload-form">
-              <div className="form-row column-row">
-                <label className="field condensed">
-                  <span>photo</span>
-                  <input
-                    className="file-input"
-                    type="file"
-                    accept="image/*"
-                    onChange={(event) => setFile(event.target.files?.[0] ?? null)}
+                <div className="bar" aria-label={`${item.location} sightings`}>
+                  <div
+                    className="bar-fill"
+                    style={{ width: `${Math.max(8, Math.round((item.count / topCount) * 100))}%` }}
                   />
-                </label>
-                <label className="field condensed">
-                  <span>campus building</span>
-                  <input
-                    className="input"
-                    type="text"
-                    placeholder="SMN"
-                    value={locationTag}
-                    list="location-codes"
-                    onChange={(event) => setLocationTag(event.target.value.toUpperCase())}
-                  />
-                </label>
-                <button type="submit" className="button" disabled={verifying}>
-                  {verifying ? "verifying..." : "report sighting"}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {showModal ? (
+          <div className="modal-backdrop" role="dialog" aria-modal="true">
+            <div className="modal">
+              <div className="modal-head">
+                <h2>report a sighting</h2>
+                <button className="link-button" type="button" onClick={() => setShowModal(false)}>
+                  close
                 </button>
               </div>
+              <form onSubmit={handleSubmit} className="upload-form">
+                <div className="form-row column-row">
+                  <label className="field condensed">
+                    <span>photo</span>
+                    <input
+                      className="file-input"
+                      type="file"
+                      accept="image/*"
+                      onChange={(event) => setFile(event.target.files?.[0] ?? null)}
+                    />
+                  </label>
+                  <label className="field condensed">
+                    <span>campus building</span>
+                    <input
+                      className="input"
+                      type="text"
+                      placeholder="SMN"
+                      value={locationTag}
+                      list="location-codes"
+                      onChange={(event) => setLocationTag(event.target.value.toUpperCase())}
+                    />
+                  </label>
+                  <button type="submit" className="button" disabled={verifying}>
+                    {verifying ? "verifying..." : "report sighting"}
+                  </button>
+                </div>
 
-              {errors ? <p className="error">{errors}</p> : null}
-              {status ? <p className="success">{status}</p> : null}
-              <datalist id="location-codes">
-                {locationCatalog.map((item) => (
-                  <option key={item.code} value={item.code}>{`${item.code} — ${item.name}`}</option>
-                ))}
-              </datalist>
-            </form>
-          </section>
-        </div>
+                {errors ? <p className="error">{errors}</p> : null}
+                {status ? <p className="success">{status}</p> : null}
+                <datalist id="location-codes">
+                  {locationCatalog.map((item) => (
+                    <option key={item.code} value={item.code}>{`${item.code} — ${item.name}`}</option>
+                  ))}
+                </datalist>
+              </form>
+            </div>
+          </div>
+        ) : null}
       </div>
     </main>
   );

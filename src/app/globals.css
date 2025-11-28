@@ -1,10 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=TikTok+Sans:wght@400;600;700&display=swap");
+
 :root {
   --background: #ffffff;
   --surface: #ffffff;
   --ink: #000000;
   --muted: #3f3f3f;
   --line: #e5e7eb;
-  --accent: #1d4ed8;
+  --accent: #8f001b;
 }
 
 * {
@@ -15,7 +17,7 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--ink);
-  font-family: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+  font-family: "TikTok Sans", "Helvetica Neue", Arial, sans-serif;
   min-height: 100vh;
   line-height: 1.5;
 }
@@ -31,13 +33,6 @@ main {
 .container {
   max-width: 1100px;
   margin: 0 auto;
-}
-
-.layout {
-  display: grid;
-  grid-template-columns: 1.8fr minmax(220px, 0.6fr);
-  gap: 1rem;
-  align-items: start;
 }
 
 .page-header {
@@ -69,7 +64,7 @@ main {
 
 .upload-panel {
   width: 100%;
-  max-width: 260px;
+  max-width: 360px;
 }
 
 .section-head {
@@ -138,7 +133,7 @@ main {
   border: 1px solid var(--accent);
   padding: 0.9rem 1.4rem;
   font-size: 1rem;
-  font-family: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+  font-family: "TikTok Sans", "Helvetica Neue", Arial, sans-serif;
   border-radius: 10px;
   font-weight: 700;
   cursor: pointer;
@@ -221,6 +216,48 @@ main {
 .muted-text {
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.link-button {
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  font-family: "TikTok Sans", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.link-button:hover {
+  background: #e5e7eb;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 20;
+}
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem;
+  width: min(480px, 100%);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+}
+
+.modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
 }
 
 @media (max-width: 720px) {
