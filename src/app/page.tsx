@@ -153,7 +153,7 @@ export default function HomePage() {
         <section className="panel distribution-panel">
           <div className="section-head">
             <h2>you should probably be careful here</h2>
-            <span className="pill">{totalSightings} sightings</span>
+            <span className="pill">{totalSightings} reports</span>
           </div>
 
           <div className="distribution-grid">
