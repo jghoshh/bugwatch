@@ -19,6 +19,7 @@ const locationCatalog = [
   { code: "MHN", name: "Laurier 70 (Hamelin)" },
   { code: "MRT", name: "University 65 (Morisset)" },
   { code: "UCU", name: "University 85 (University Centre / Jock-Turcot)" },
+  { code: "ANNEX", name: "Annex Residence" },
   { code: "LPR", name: "Louis Pasteur 141" },
   { code: "THN", name: "University 45 (Thompson Residence)" },
   { code: "MNT", name: "University 125 (Montpetit)" },
@@ -76,39 +77,46 @@ const seedCodes = [
   "DRO"
 ];
 
-const buildSighting = (code: string, minutesAgo = 5): Sighting => {
-  const name = locationMap[code];
-  return {
-    id: `seed-${code}`,
-    description: `Seed sighting @<${code}>${name ? ` | ${name}` : ""}`,
-    location: code,
-    imageUrl: "https://placehold.co/200x120/ffffff/000000?text=Bug",
-    createdAt: Date.now() - minutesAgo * 60000
-  };
-};
-
 function createSeedSightings(): Sighting[] {
-  const groups = [
-    { code: "SMN", count: 10 },
-    { code: "HGN", count: 7 },
-    { code: "WCA", count: 3 },
-    { code: "TBT", count: 2 },
-    { code: "LRR", count: 2 },
-    { code: "MRT", count: 2 }
+  const baseImage = "https://placehold.co/200x120/ffffff/000000?text=Bug";
+  const now = Date.now();
+  return [
+    {
+      id: "seed-mrt-1",
+      description: "Bedbug spotted in Morisset Library (1st floor study area) — reddit.com",
+      location: "MRT",
+      imageUrl: baseImage,
+      createdAt: now - 5 * 60000
+    },
+    {
+      id: "seed-mrt-2",
+      description: "Bedbug found in Morisset Library (5th floor) — reddit.com",
+      location: "MRT",
+      imageUrl: baseImage,
+      createdAt: now - 25 * 60000
+    },
+    {
+      id: "seed-ucu-1",
+      description: "Bug crawled onto a student’s sweater (UCU 3rd floor) — reddit.com",
+      location: "UCU",
+      imageUrl: baseImage,
+      createdAt: now - 45 * 60000
+    },
+    {
+      id: "seed-annex-1",
+      description: "Multiple bedbugs reported in an Annex dorm room — reddit.com",
+      location: "ANNEX",
+      imageUrl: baseImage,
+      createdAt: now - 65 * 60000
+    },
+    {
+      id: "seed-brs-1",
+      description: "Bedbugs reported in a unit of Brooks Residence — reddit.com",
+      location: "BRS",
+      imageUrl: baseImage,
+      createdAt: now - 85 * 60000
+    }
   ];
-
-  const sightings: Sighting[] = [];
-  groups.forEach((group, groupIndex) => {
-    Array.from({ length: group.count }).forEach((_, i) => {
-      const minutesAgo = groupIndex * 10 + i + 1;
-      sightings.push({
-        ...buildSighting(group.code, minutesAgo),
-        id: `seed-${group.code}-${i}`
-      });
-    });
-  });
-
-  return sightings;
 }
 
 export default function HomePage() {
